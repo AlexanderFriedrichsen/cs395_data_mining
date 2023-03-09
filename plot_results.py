@@ -47,8 +47,8 @@ def plot_execution_time(filename, title):
 for filename in os.listdir("output"):
     if filename.startswith("apriori"):
         plot_execution_time(os.path.join("output", filename), "Apriori")
-    # elif filename.startswith("fp_growth"):
-    #     plot_execution_time(os.path.join("output", filename), "FP-Growth")
+    elif filename.startswith("fp_growth"):
+        plot_execution_time(os.path.join("output", filename), "FP-Growth")
     # elif filename.startswith("eclat"):
     #     plot_execution_time(os.path.join("output", filename), "ECLAT")
 
