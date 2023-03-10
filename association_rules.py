@@ -10,7 +10,7 @@ h_dataset_files = ["T25I10D010K-h.txt", "T10I04D100K-h.txt"]
 v_dataset_files = ["T25I10D010K-v.txt", "T10I04D100K-v.txt"]
 
 # List the minimum support thresholds
-min_support_thresholds =  [0.030, 0.025, 0.020, 0.015, 0.010, 0.005, 0.001] 
+min_support_thresholds =  [.001]#[0.030, 0.025, 0.020, 0.015, 0.010, 0.005, 0.001] 
 h_algorithms = ["eclat"]#["fpgrowth", "apriori", "eclat"]
 #v_algorithms = ["eclat"]
 
@@ -44,6 +44,7 @@ for algorithm in h_algorithms:
                 print(type(frequent_itemsets))
                 print(frequent_itemsets)
             execution_time = time.time() - start_time
+            print("execution time", execution_time)
             
             min_conf_values = [0.2, 0.3, 0.4]
             for min_conf in min_conf_values:
