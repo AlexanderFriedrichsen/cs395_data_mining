@@ -106,4 +106,4 @@ Frequent itemsets:
 0.03053 : frozenset({'886'})
 0.03281 : frozenset({'510'})
 0.02693 : frozenset({'661'})
-Execution time: 1.476762056350708 seconds
+Execution time: 1.5421051979064941 seconds

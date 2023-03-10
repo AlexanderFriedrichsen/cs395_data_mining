@@ -1,56 +1,39 @@
+import os
+import pandas as pd
 import matplotlib.pyplot as plt
 import re
-import os
-import numpy as np
-import pandas as pd
 
-# Define a function to extract min_support from the output filename
-def extract_min_support(filename):
-    pattern = r"_([0-9]+\.[0-9]+)$"
-    match = re.search(pattern, filename)
-    if match:
-        return float(match.group(1))
-    else:
-        return None
+# Define a regex pattern to extract the algorithm and min support from the file name
+pattern = r'^(?!arules)(.+?)_(\d+)_([\d\.]+)$' 
 
-def plot_execution_time(filename, title):
-    # Read the lines of the file
-    with open(filename, "r") as f:
-        lines = f.readlines()
-    
-    # Extract the frequent itemsets and execution time
-    frequent_itemsets = []
-    execution_time = None
-    for line in lines:
-        if line.startswith("Frequent itemsets:"):
-            continue
-        elif line.startswith("Execution time:"):
-            execution_time = float(line.split(":")[1].replace("seconds", "").strip())
-        else:
-            parts = line.split(":")
-            support = float(parts[0].strip())
-            itemset = frozenset(parts[1].strip().split())
-            frequent_itemsets.append((itemset, support))
-    
-    # Extract the minimum support from the filename
-    min_support = extract_min_support(filename)
-    
-    # Plot the execution time vs minimum support
-    if min_support is not None and execution_time is not None:
-        plt.plot(min_support, execution_time, marker="o")
-        plt.xlabel("Minimum Support")
-        plt.ylabel("Execution Time (Seconds)")
-        plt.title("{} Execution Time vs Minimum Support".format(title))
+# Create an empty DataFrame to store the execution times
+df = pd.DataFrame(columns=['Algorithm', 'MinSupport', 'ExecutionTime'])
 
+# Loop over all the files in the folder
+folder_path = 'output'
+for filename in os.listdir(folder_path):
+    # Filter the files based on their name prefix using the isfile function
+    if os.path.isfile(os.path.join(folder_path, filename)):
+        # Extract the algorithm and min support from the file name using regex
+        match = re.match(pattern, filename)
+        if match:
+            algorithm = match.group(1)
+            min_support = float(match.group(3))
 
-# Iterate over output files and plot execution times
-for filename in os.listdir("output"):
-    if filename.startswith("apriori"):
-        plot_execution_time(os.path.join("output", filename), "Apriori")
-    elif filename.startswith("fp_growth"):
-        plot_execution_time(os.path.join("output", filename), "FP-Growth")
-    # elif filename.startswith("eclat"):
-    #     plot_execution_time(os.path.join("output", filename), "ECLAT")
+            # Read the last line of the file and extract the execution time
+            with open(os.path.join(folder_path, filename)) as f:
+                last_line = f.readlines()[-1]
+                execution_time = float(last_line.split()[-2])
 
-# Show the plot
+            # Append the data to the DataFrame
+            df = df.append({'Algorithm': algorithm, 'MinSupport': min_support, 'ExecutionTime': execution_time},
+                           ignore_index=True)
+
+# Plot the scatter plot using matplotlib
+fig, ax = plt.subplots()
+for algorithm, data in df.groupby('Algorithm'):
+    ax.scatter(data['MinSupport'], data['ExecutionTime'], label=algorithm)
+ax.set_xlabel('Min Support')
+ax.set_ylabel('Execution Time (seconds)')
+ax.legend()
 plt.show()
