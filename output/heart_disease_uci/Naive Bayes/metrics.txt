@@ -1,0 +1,10 @@
+Confusion Matrix (Naive Bayes):
+[[151  47]
+ [ 21  57]]
+
+Sensitivity: 0.731
+Specificity: 0.763
+Balanced Accuracy: 0.747
+Precision: 0.548
+Recall: 0.731
+F1 Score: 0.626

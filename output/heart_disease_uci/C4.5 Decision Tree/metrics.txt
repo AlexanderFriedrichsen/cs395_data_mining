@@ -1,0 +1,10 @@
+Confusion Matrix (C4.5 Decision Tree):
+[[171  27]
+ [ 36  42]]
+
+Sensitivity: 0.538
+Specificity: 0.864
+Balanced Accuracy: 0.701
+Precision: 0.609
+Recall: 0.538
+F1 Score: 0.571

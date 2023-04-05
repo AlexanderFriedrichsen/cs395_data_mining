@@ -1,0 +1,10 @@
+Confusion Matrix (Support Vector Machine):
+[[ 59   4]
+ [  2 106]]
+
+Sensitivity: 0.981
+Specificity: 0.937
+Balanced Accuracy: 0.959
+Precision: 0.964
+Recall: 0.981
+F1 Score: 0.972

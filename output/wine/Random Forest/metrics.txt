@@ -1,0 +1,11 @@
+Confusion Matrix (Random Forest):
+[[19  0  0]
+ [ 0 21  0]
+ [ 0  0 14]]
+
+Sensitivity: 1.000
+Specificity: 0.525
+Balanced Accuracy: 0.424
+Precision: 1.000
+Recall: 1.000
+F1 Score: 1.000
