@@ -1,0 +1,20 @@
+K-Means Clustering Results:
+Silhouette Score: 0.48975082695298533
+Calinski-Harabasz Index: 1481.4753424968233
+Davies-Bouldin Index: 0.7817364605843775
+Execution Time: 0.04900717735290527 seconds
+Memory Usage: 146.68359375 MB
+Hierarchical Clustering Results:
+Silhouette Score: 0.4391867809034311
+Calinski-Harabasz Index: 1087.7713369249986
+Davies-Bouldin Index: 0.837284087751716
+Execution Time: 0.029980182647705078 seconds
+Memory Usage: 146.69140625 MB
+DBSCAN Clustering Results:
+Eps: 0.4503519041566185
+Min Samples: 147
+Silhouette Score: 0.3060017383266752
+Calinski-Harabasz Index: 361.7530597734725
+Davies-Bouldin Index: 2.8816508031309773
+Execution Time: 0.24503803253173828 seconds
+Memory Usage: 147.47265625 MB
